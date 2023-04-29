@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SmartLab.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SmartLab.Views"
+    xmlns:unusedviews="clr-namespace:SmartLab.Views.UnusedViews"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+
+    <ShellContent ContentTemplate="{DataTemplate local:OnBoardView}" Route="OnBoardView" />
+    <ShellContent ContentTemplate="{DataTemplate local:LoginOrRegisterView}" Route="LoginOrRegisterView" />
+    <ShellContent ContentTemplate="{DataTemplate local:EmailCodeView}" Route="EmailCodeView" />
+    <ShellContent ContentTemplate="{DataTemplate local:CreatePasswordView}" Route="CreatePasswordView" />
+    <ShellContent ContentTemplate="{DataTemplate local:InputPasswordView}" Route="InputPasswordView" />
+    <ShellContent ContentTemplate="{DataTemplate local:PatientCardView}" Route="PatientCardView" />
+
+    <TabBar
+        Route="AnalyzesView"
+        Shell.TabBarTitleColor="#1A6FEE"
+        Shell.TabBarUnselectedColor="#B8C1CC">
+        <Tab Title="Анализы" Icon="analyzes.png">
+            <ShellContent ContentTemplate="{DataTemplate local:AnalyzesView}" />
+        </Tab>
+        <Tab Title="Результаты" Icon="results.png">
+            <ShellContent ContentTemplate="{DataTemplate unusedviews:ResultsView}" />
+        </Tab>
+        <Tab Title="Поддержка" Icon="support.png">
+            <ShellContent ContentTemplate="{DataTemplate unusedviews:SupportView}" />
+        </Tab>
+        <Tab Title="Профиль" Icon="user.png">
+            <ShellContent ContentTemplate="{DataTemplate unusedviews:ProfileView}" />
+        </Tab>
+    </TabBar>
+</Shell>

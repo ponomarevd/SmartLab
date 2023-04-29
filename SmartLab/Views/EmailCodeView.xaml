@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartLab.Views.EmailCodeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModel="clr-namespace:SmartLab.ViewModels"
+    x:DataType="ViewModel:EmailCodeViewModel">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button
+            Margin="20"
+            Background="#F5F5F9"
+            Command="{Binding BackCommand}"
+            HeightRequest="35"
+            HorizontalOptions="Start"
+            ImageSource="vector.png"
+            VerticalOptions="Start"
+            WidthRequest="35" />
+        <StackLayout
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            WidthRequest="335">
+            <Label
+                FontFamily="SF-Pro-Display-Semibold"
+                FontSize="17"
+                HorizontalOptions="Center"
+                Text="Введите код из E-mail" />
+            <StackLayout
+                Margin="0,25,0,0"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="#F5F5F9"
+                    BorderColor="#EBEBEB"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <Entry
+                        x:Name="Field1"
+                        Margin="18,0,0,0"
+                        FontSize="25"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        Text="{Binding Field1}"
+                        TextChanged="Field1_TextChanged" />
+                </Frame>
+
+                <Frame
+                    Margin="15,0,0,0"
+                    Padding="0"
+                    BackgroundColor="#F5F5F9"
+                    BorderColor="#EBEBEB"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <Entry
+                        x:Name="Field2"
+                        Margin="18,0,0,0"
+                        FontSize="25"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        Text="{Binding Field2}"
+                        TextChanged="Field2_TextChanged" />
+                </Frame>
+
+                <Frame
+                    Margin="15,0,0,0"
+                    Padding="0"
+                    BackgroundColor="#F5F5F9"
+                    BorderColor="#EBEBEB"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <Entry
+                        x:Name="Field3"
+                        Margin="18,0,0,0"
+                        FontSize="25"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        Text="{Binding Field3}"
+                        TextChanged="Field3_TextChanged" />
+                </Frame>
+
+                <Frame
+                    Margin="15,0,0,0"
+                    Padding="0"
+                    BackgroundColor="#F5F5F9"
+                    BorderColor="#EBEBEB"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <Entry
+                        x:Name="Field4"
+                        Margin="18,0,0,0"
+                        FontSize="25"
+                        Keyboard="Numeric"
+                        MaxLength="1"
+                        Text="{Binding Field4}"
+                        TextChanged="Field4_TextChanged" />
+                </Frame>
+
+            </StackLayout>
+
+            <Grid>
+                <Label
+                    Margin="0,20,0,0"
+                    FontFamily="SF-Pro-Display-Regular"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding TimeIsVisible}"
+                    Text="{Binding TimeToNewCode}"
+                    TextColor="#939396"
+                    WidthRequest="250" />
+                <Button
+                    Margin="0,20,0,0"
+                    Padding="5"
+                    Background="#1A6FEE"
+                    Command="{Binding SendAgainCommand}"
+                    FontFamily="SF-Pro-Display-SemiBold"
+                    FontSize="17"
+                    HeightRequest="46"
+                    IsVisible="{Binding BtnSendIsVisible}"
+                    Text="Отправить еще раз"
+                    WidthRequest="220" />
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>

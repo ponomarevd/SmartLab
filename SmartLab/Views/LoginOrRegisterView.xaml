@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartLab.Views.LoginOrRegisterView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModel="clr-namespace:SmartLab.ViewModels"
+    x:DataType="ViewModel:LoginOrRegisterViewModel">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout
+            Grid.Row="1"
+            Margin="30,0,20,0"
+            Orientation="Horizontal">
+            <Image
+                HeightRequest="36"
+                Source="hello.png"
+                VerticalOptions="StartAndExpand"
+                WidthRequest="36" />
+            <Label
+                Margin="10,0,0,0"
+                Padding="0"
+                FontFamily="SF-Pro-Display-Heavy"
+                FontSize="24"
+                HorizontalOptions="Start"
+                Text="Добро пожаловать!" />
+        </StackLayout>
+        <StackLayout Grid.Row="2" Margin="30,0,20,0">
+            <Label
+                FontFamily="SF-Pro-Display-Regular"
+                FontSize="15"
+                Text="Войдите, чтобы пользоваться функциями приложения" />
+        </StackLayout>
+        <StackLayout
+            Grid.Row="4"
+            Margin="20,0,20,0"
+            WidthRequest="335">
+            <Label
+                Margin="0,0,0,10"
+                FontFamily="SF-Pro-Display-Regular"
+                FontSize="14"
+                Text="Вход по E-mail"
+                TextColor="#7E7E9A" />
+            <Frame
+                Padding="3"
+                Background="#EBEBEB"
+                BorderColor="Transparent">
+                <Entry
+                    x:Name="mailENTR"
+                    Margin="5,0,0,0"
+                    FontSize="15"
+                    Placeholder="example@mail.ru"
+                    Text="{Binding UserMail}" />
+            </Frame>
+            <Button
+                Margin="0,30,0,0"
+                Background="#1A6FEE"
+                Command="{Binding NextCommand}"
+                FontFamily="SF-Pro-Display-SemiBold"
+                FontSize="17"
+                HeightRequest="56"
+                IsEnabled="{Binding NextBtnIsEnabled}"
+                Opacity="{Binding BtnOpacity}"
+                Text="Далее"
+                TextColor="White" />
+        </StackLayout>
+        <StackLayout
+            Grid.Row="5"
+            Margin="0,0,0,60"
+            VerticalOptions="End"
+            WidthRequest="335">
+            <Label
+                Margin="0,0,0,20"
+                FontFamily="SF-Pro-Display-Regular"
+                FontSize="14"
+                HorizontalOptions="Center"
+                Text="Или войдите с помощью"
+                TextColor="#7E7E9A" />
+            <Frame Padding="0" BorderColor="#EBEBEB">
+                <Button
+                    Background="Transparent"
+                    Command="{Binding LoginYandexCommand}"
+                    FontFamily="SF-Pro-Display-Medium"
+                    FontSize="17"
+                    HeightRequest="56"
+                    Text="Войти с яндекс"
+                    TextColor="Black" />
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartLab.Views.AnalyzesView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModel="clr-namespace:SmartLab.ViewModels"
+    xmlns:core="clr-namespace:SmartLab.Core"
+    x:DataType="ViewModel:AnalyzesViewModel">
+    <Grid>
+        <ScrollView
+            Margin="0,20,0,0"
+            Orientation="Vertical"
+            Scrolled="ScrollView_Scrolled"
+            TranslationY="{Binding TranslationY}">
+            <Grid>
+                <StackLayout>
+                    <ContentView Margin="0,30,0,0">
+                        <StackLayout>
+
+                            <StackLayout Grid.Row="0" Margin="-15,0,0,0">
+                                <Label
+                                    Margin="35,30,0,20"
+                                    FontFamily="SF-Pro-Display-Semibold"
+                                    Text="Акции и новости"
+                                    TextColor="#939396" />
+                                <CarouselView
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding NewsCollection}"
+                                    Loop="False"
+                                    PeekAreaInsets="0,0,65,0">
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate x:DataType="core:NewsItem">
+                                            <Frame
+                                                Padding="0"
+                                                BorderColor="#EBEBEB"
+                                                HeightRequest="160"
+                                                HorizontalOptions="Start"
+                                                WidthRequest="290">
+                                                <Frame.Background>
+                                                    <LinearGradientBrush>
+                                                        <GradientStop Offset="0.0" Color="#76B3FF" />
+                                                        <GradientStop Offset="0.25" Color="#CDE3FF" />
+                                                    </LinearGradientBrush>
+                                                </Frame.Background>
+                                                <StackLayout>
+                                                    <Grid Margin="10,10,0,0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="45" />
+                                                            <RowDefinition Height="52" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Image
+                                                            Grid.RowSpan="3"
+                                                            Margin="0,20,-35,0"
+                                                            HeightRequest="160"
+                                                            HorizontalOptions="End"
+                                                            RotationY="180"
+                                                            Source="{Binding image}"
+                                                            WidthRequest="210" />
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            FontFamily="SF-Pro-Display-Heavy"
+                                                            FontSize="17"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding name}"
+                                                            TextColor="#ffffff"
+                                                            WidthRequest="200" />
+                                                        <Label
+                                                            Grid.Row="1"
+                                                            FontFamily="SF-Pro-Display-Regular"
+                                                            FontSize="14"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding description}"
+                                                            TextColor="#ffffff"
+                                                            WidthRequest="200" />
+                                                        <Label
+                                                            Grid.Row="2"
+                                                            Margin="0,10,0,0"
+                                                            FontFamily="SF-Pro-Display-Heavy"
+                                                            FontSize="20"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding price, StringFormat='{0} ₽'}"
+                                                            TextColor="#ffffff"
+                                                            WidthRequest="160" />
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
+                            </StackLayout>
+                            <StackLayout Grid.Row="2" Margin="-75,30,20,0">
+                                <Label
+                                    Margin="95,0,0,20"
+                                    FontFamily="SF-Pro-Display-Semibold"
+                                    Text="Каталог анализов"
+                                    TextColor="#939396" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentView>
+                    <ContentView>
+                        <StackLayout Margin="20,0,0,0">
+                            <Grid>
+                                <CollectionView
+                                    x:Name="FirstCollectionView"
+                                    BackgroundColor="Transparent"
+                                    ItemsLayout="HorizontalGrid, 1"
+                                    ItemsSource="{Binding CarouselItem}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="core:CatalogButtonItem">
+                                            <StackLayout Margin="0,0,20,0">
+                                                <Button
+                                                    Padding="15"
+                                                    BackgroundColor="#F5F5F9"
+                                                    BorderColor="#EBEBEB"
+                                                    Command="{Binding ButtonCommand}"
+                                                    CornerRadius="10"
+                                                    HeightRequest="50"
+                                                    HorizontalOptions="Start"
+                                                    Text="{Binding Name}"
+                                                    TextColor="#7E7E9A" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Grid
+                                    x:Name="FirstCollectionViewGrid"
+                                    BackgroundColor="White"
+                                    IsVisible="false" />
+                            </Grid>
+                            <CollectionView
+                                x:Name="Catalog"
+                                BackgroundColor="Transparent"
+                                ItemsLayout="VerticalGrid, 1"
+                                ItemsSource="{Binding CatalogCollection}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="core:CatalogItem">
+                                        <StackLayout>
+                                            <Frame
+                                                Margin="0,20,20,0"
+                                                Padding="0"
+                                                BackgroundColor="#FFFFFF"
+                                                BorderColor="#F4F4F4"
+                                                CornerRadius="15"
+                                                HeightRequest="160"
+                                                HorizontalOptions="Start">
+                                                <StackLayout>
+                                                    <Grid Margin="20,20,0,0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="45" />
+                                                            <RowDefinition Height="52" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            FontFamily="SF-Pro-Display-Medium"
+                                                            FontSize="17"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding name}"
+                                                            TextColor="#000000" />
+                                                        <Label
+                                                            Grid.Row="1"
+                                                            Margin="0,25,0,0"
+                                                            FontFamily="SF-Pro-Display-Semibold"
+                                                            FontSize="14"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding time_result}"
+                                                            TextColor="#939396"
+                                                            WidthRequest="200" />
+                                                        <Label
+                                                            Grid.Row="2"
+                                                            FontFamily="SF-Pro-Display-Semibold"
+                                                            FontSize="20"
+                                                            HorizontalOptions="Start"
+                                                            Text="{Binding price, StringFormat='{0} ₽'}"
+                                                            TextColor="#000000"
+                                                            WidthRequest="160" />
+                                                        <Button
+                                                            Grid.Row="3"
+                                                            Margin="0,-20,20,0"
+                                                            Padding="10"
+                                                            Background="#1A6FEE"
+                                                            BorderColor="#EBEBEB"
+                                                            Command="{Binding catalogButtonItem.ButtonCommand}"
+                                                            CommandParameter="{Binding catalogButtonItem.Name}"
+                                                            CornerRadius="10"
+                                                            FontFamily="SF-Pro-Display-Semibold"
+                                                            FontSize="14"
+                                                            HeightRequest="40"
+                                                            HorizontalOptions="End"
+                                                            Text="Добавить"
+                                                            TextColor="#ffffff" />
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ContentView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+        <ContentView>
+            <Grid
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                VerticalOptions="Start">
+                <Grid BackgroundColor="White" />
+                <Frame
+                    Margin="10,10,10,0"
+                    Padding="3"
+                    Background="#F5F5F9"
+                    BorderColor="#EBEBEB"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    WidthRequest="371   ">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Margin="10,0,0,0" Source="search.png" />
+                        <Entry
+                            Margin="5,0,0,0"
+                            FontFamily="SF-Pro-Display-Regular"
+                            FontSize="15"
+                            Placeholder="Искать анализы" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ContentView>
+
+
+        <CollectionView
+            x:Name="SecondCollectionView"
+            Margin="20,80,0,0"
+            Background="White"
+            BackgroundColor="Transparent"
+            HeightRequest="50"
+            HorizontalOptions="Center"
+            IsVisible="false"
+            ItemsLayout="HorizontalGrid, 1"
+            ItemsSource="{Binding CarouselItem}"
+            VerticalOptions="Start">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="core:CatalogButtonItem">
+                    <StackLayout Margin="0,0,20,0">
+                        <Button
+                            Padding="15"
+                            BackgroundColor="#F5F5F9"
+                            BorderColor="#EBEBEB"
+                            Command="{Binding ButtonCommand}"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            HorizontalOptions="Start"
+                            Text="{Binding Name}"
+                            TextColor="#7E7E9A" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+
+</ContentPage>
